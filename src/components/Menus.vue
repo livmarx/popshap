@@ -2,9 +2,9 @@
   <nav>
     <v-toolbar app >
     <!-- HEADER -->
-      <v-toolbar-side-icon   class="grey--text text--darken-1" @click="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title class="text-uppercase grey--text text--darken-1">
-        <span class="font-weight-light">p o p</span>
+      <v-toolbar-side-icon class="grey--text text--darken-1 " @click="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-title class="text-uppercase grey--text text--darken-1 headline">
+        <span class="font-weight-light headline">p o p</span>
         <span>s h a p</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -14,9 +14,9 @@
       </v-btn>
     </v-toolbar>
     <!-- DRAWER -->
-    <v-navigation-drawer v-model="drawer" app class="grey">
+    <v-navigation-drawer v-model="drawer" app class="grey darken-2">
       <v-toolbar flat>
-      <v-list class="grey darken-1">
+      <v-list class="grey darken-3">
         <v-list-tile>
           <v-list-tile-title class="title text-uppercase grey--text text--lighten-4 font-weight-light">
             Menu
@@ -25,22 +25,22 @@
       </v-list>
     </v-toolbar>
      <v-btn flat color="grey">
-        <router-link :to="{name: 'Inventory'}">
-          <p>Inventory</p>
+        <router-link  :to="{name: 'Inventory'}">
+          <p class="title text-uppercase grey--text text--lighten-4 font-weight-light subheading">Inventory</p>
         </router-link>
       </v-btn>
       <br/>
        <v-divider></v-divider>
       <v-btn flat color="grey">
         <router-link :to="{name: 'Users'}">
-          <p>Users</p>
+          <p class="title text-uppercase grey--text text--lighten-4 font-weight-light subheading">Users</p>
         </router-link>
       </v-btn>
       <br/>
        <v-divider></v-divider>
-      <v-btn flat color="grey">
+      <v-btn flat subheading color="grey">
         <router-link :to="{name: 'Clients'}">
-          <p>Clients</p>
+          <p class="title text-uppercase grey--text text--lighten-4 font-weight-light subheading">Clients</p>
         </router-link>
       </v-btn>
     <v-divider></v-divider>
@@ -51,7 +51,7 @@
 
 <script>
 export default {
-  name: 'Header',
+  name: 'Menus',
   data() {
     return {
       drawer: false,

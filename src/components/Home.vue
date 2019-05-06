@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <h1
-      class="cyan--text darken-2"
-    >
+    <h1>
       HOME
     </h1>
   </div>
