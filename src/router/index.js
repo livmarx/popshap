@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import Home from '@/components/Home';
 import Users from '@/components/Users';
 import Clients from '@/components/Clients';
+import Inventory from '@/components/Inventory';
 
 Vue.use(Router);
 
@@ -13,6 +14,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
+    },
+    {
+      path: '/inventory',
+      name: 'Inventory',
+      component: Inventory,
     },
     {
       path: '/users',
