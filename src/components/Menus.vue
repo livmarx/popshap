@@ -1,11 +1,13 @@
 <template>
   <nav>
-    <v-toolbar app >
+    <v-toolbar app flat >
     <!-- HEADER -->
       <v-toolbar-side-icon class="grey--text text--darken-1 " @click="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title class="text-uppercase grey--text text--darken-1 headline">
-        <span class="font-weight-light headline">p o p</span>
-        <span>s h a p</span>
+      <v-toolbar-title >
+        <router-link :to="{name: 'Home'}">
+        <span class="text-uppercase grey--text text--darken-1 headline font-weight-light ">p o p</span>
+        <span class="text-uppercase grey--text text--darken-1 headline font-weight-bold ">s h a p</span>
+        </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn flat color="grey">
@@ -18,29 +20,29 @@
       <v-toolbar flat>
       <v-list class="grey darken-3">
         <v-list-tile>
-          <v-list-tile-title class="title text-uppercase grey--text text--lighten-4 font-weight-light">
-            Menu
+          <v-list-tile-title class="text-uppercase grey--text text--lighten-2 headline">
+            M e n u
           </v-list-tile-title>
         </v-list-tile>
       </v-list>
     </v-toolbar>
      <v-btn flat color="grey">
         <router-link  :to="{name: 'Inventory'}">
-          <p class="title text-uppercase grey--text text--lighten-4 font-weight-light subheading">Inventory</p>
+          <p class="title text-uppercase grey--text text--lighten-2 font-weight-light subheading">Inventory</p>
         </router-link>
       </v-btn>
       <br/>
        <v-divider></v-divider>
       <v-btn flat color="grey">
         <router-link :to="{name: 'Users'}">
-          <p class="title text-uppercase grey--text text--lighten-4 font-weight-light subheading">Users</p>
+          <p class="title text-uppercase grey--text text--lighten-2 font-weight-light subheading">Users</p>
         </router-link>
       </v-btn>
       <br/>
        <v-divider></v-divider>
       <v-btn flat subheading color="grey">
         <router-link :to="{name: 'Clients'}">
-          <p class="title text-uppercase grey--text text--lighten-4 font-weight-light subheading">Clients</p>
+          <p class="title text-uppercase grey--text text--lighten-2 font-weight-light subheading">Clients</p>
         </router-link>
       </v-btn>
     <v-divider></v-divider>
@@ -59,4 +61,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.router-link {
+  text-decoration: none;
+}
 </style>
+
