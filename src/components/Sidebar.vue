@@ -1,16 +1,15 @@
 <template>
-  <div class="home">
-    <h1
-      class="cyan--text darken-2"
-    >
-      HOME
-    </h1>
-  </div>
+  <v-navigation-drawer
+    stateless
+    value='true'
+  >
+       <h3>Title</h3>
+    </v-navigation-drawer >
 </template>
 
 <script>
 export default {
-  name: 'Home',
+  name: 'Sidebar',
   data() {
     return {};
   },

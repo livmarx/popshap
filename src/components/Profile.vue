@@ -1,16 +1,12 @@
 <template>
-  <div class="home">
-    <h1
-      class="cyan--text darken-2"
-    >
-      HOME
-    </h1>
+  <div class="profile">
+    <h1>Profile</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
+  name: 'Profile',
   data() {
     return {};
   },
