@@ -5,6 +5,7 @@ import Home from '@/components/Home';
 import Users from '@/components/Users';
 import Clients from '@/components/Clients';
 import Inventory from '@/components/Inventory';
+import AddUser from '@/components/AddUser';
 
 Vue.use(Router);
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/clients',
       name: 'Clients',
       component: Clients,
+    },
+    {
+      path: '/add-user',
+      name: 'AddUser',
+      component: AddUser,
     },
   ],
 });
