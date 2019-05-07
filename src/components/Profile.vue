@@ -1,6 +1,7 @@
 <template>
   <div class="profile">
     <h1>Profile</h1>
+    <h4>{{ user.name}}</h4>
   </div>
 </template>
 
@@ -8,7 +9,11 @@
 export default {
   name: 'Profile',
   data() {
-    return {};
+    return {
+      user: {
+        name: 'Claire',
+      },
+    };
   },
 };
 </script>
