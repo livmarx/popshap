@@ -1,17 +1,17 @@
 <template>
   <div class="clients">
-    <div class="client-banner">
-    <h1 class="grey--text text--lighten-2 display-2 font-weight-thin">Clients</h1>
-    <v-data-table
-      class="elevation-1"
-      :items="fakeData"
-    >
-      <template >
-        <td></td>
-        <td class="text-xs-right">Header</td>
-        <td class="text-xs-right">Header</td>
-      </template>
-    </v-data-table>
+    <div class="banner">
+      <h1 class="grey--text text--lighten-2 display-2 font-weight-thin">Clients</h1>
+    </div>
+     <div
+        v-for="(client, i) in clients"
+        :key="i"
+      >
+      <h3>{{ client.name }}</h3>
+      <p> Industry: {{ client.industry }}</p>
+      <p>Email: {{ client.email }}</p>
+      <p>Phone: {{ client.phone }}</p>
+      <br/>
     </div>
   </div>
 </template>
@@ -46,7 +46,7 @@ export default {
 h1 {
   padding: 30px;
 }
-.client-banner {
+.banner {
   background-color: slategray;
 }
 </style>
