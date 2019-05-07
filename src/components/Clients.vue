@@ -17,16 +17,26 @@
 </template>
 
 <script>
+import db from '@/firebase/init';
 export default {
   name: 'Clients',
   data() {
     return {
-      fakeData: [
-        { name: 'Claire', id: 1 },
-        { name: 'Sarai', id: 2 },
-        { name: 'Mary', id: 3 },
-      ],
+      clients: [],
     };
+  },
+  created() {
+    //fetch data from firestore
+    db
+      .collection('clients')
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          let client = doc.data();
+          client.id = doc.id;
+          this.clients.push(client);
+        });
+      });
   },
 };
 </script>
