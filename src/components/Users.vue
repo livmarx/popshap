@@ -35,9 +35,9 @@
                     {{user.notes | snippet}}
                     <br/>
                   </div>
-                    <!-- <v-btn class="grey darken-2 white--text">
-                      <v-icon>edit</v-icon>
-                    </v-btn> -->
+                  <v-btn flat class="mx-1 mt-0" @click="deleteUser(user.id)">
+                    <v-icon >delete</v-icon>
+                  </v-btn>
                 </v-card>
               </v-flex>
             </v-layout>
@@ -55,6 +55,24 @@ export default {
     return {
       users: [],
     };
+  },
+  methods: {
+    deleteUser(id) {
+      // delete doc/recie from firestore
+      db
+        .collection('users')
+        .doc(id)
+        .delete()
+        .then(() => {
+          this.users = this.users.filter(user => {
+            if (user.id.toString().match(id.toString())) {
+              return false;
+            } else {
+              return true;
+            }
+          });
+        });
+    },
   },
   created() {
     //fetch data from firestore
