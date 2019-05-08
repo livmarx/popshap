@@ -80,6 +80,9 @@ export default {
       .collection('users')
       .get()
       .then(snapshot => {
+        console.log('snapshot: ', snapshot);
+        console.log('snapshot.length: ', snapshot.length);
+        console.log('typeof snapshot: ', typeof snapshot);
         snapshot.forEach(doc => {
           let user = doc.data();
           user.id = doc.id;

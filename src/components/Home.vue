@@ -5,20 +5,16 @@
         Home
       </h1>
     </div>
-    <Profile />
   </div>
 </template>
 
 <script>
-import Profile from '@/components/Profile';
 export default {
   name: 'Home',
   data() {
     return {};
   },
-  components: {
-    Profile,
-  },
+  components: {},
 };
 </script>
 
