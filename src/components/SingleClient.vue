@@ -39,7 +39,7 @@ export default {
   name: 'SingleClient',
   data() {
     return {
-      user: {},
+      client: {},
     };
   },
   methods: {
@@ -49,10 +49,10 @@ export default {
 
       ref
         .update({
-          name: this.name,
-          industry: this.industry,
-          email: this.email,
-          phone: this.phone,
+          name: this.client.name,
+          industry: this.client.industry,
+          email: this.client.email,
+          phone: this.client.phone,
         })
         .then(res => {
           this.$router.push({ name: 'Clients' });

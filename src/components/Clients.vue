@@ -33,6 +33,11 @@
                   <v-btn flat class="mx-1 mt-0" @click="deleteClient(client.id)">
                     <v-icon >delete</v-icon>
                   </v-btn>
+                  <v-btn>
+                    <router-link :to="{name: 'SingleClient', params: {client_id: client.id}}">
+                      More Info
+                    </router-link>
+                  </v-btn>
                 </v-card>
               </v-flex>
             </v-layout>
