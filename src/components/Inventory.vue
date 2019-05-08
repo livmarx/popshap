@@ -41,6 +41,11 @@
                   <v-btn flat class="mx-1 mt-0" @click="deleteProduct(product.id)">
                     <v-icon >delete</v-icon>
                   </v-btn>
+                  <v-btn>
+                    <router-link :to="{name: 'SingleProduct', params: {product_id: product.id}}">
+                      More Info
+                    </router-link>
+                  </v-btn>
                 </v-card>
               </v-flex>
             </v-layout>

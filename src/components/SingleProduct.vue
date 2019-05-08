@@ -8,6 +8,10 @@
     <br/>
     <div>
      <v-form class="px-5">
+       <v-text-field
+        label="Product Type"
+        v-model="product.deviceType"
+      ></v-text-field>
       <v-text-field
         label="Client Name"
         v-model="product.clientName"
@@ -71,15 +75,15 @@ export default {
 
       ref
         .update({
-          clientName: this.clientName,
-          color: this.color,
-          controls: this.controls,
-          deviceType: this.deviceType,
-          manufacturerName: this.manufacturerName,
-          serialNumber: this.serialNumber,
-          size: this.size,
-          sku: this.sku,
-          status: this.status,
+          clientName: this.product.clientName,
+          color: this.product.color,
+          controls: this.product.controls,
+          deviceType: this.product.deviceType,
+          manufacturerName: this.product.manufacturerName,
+          serialNumber: this.product.serialNumber,
+          size: this.product.size,
+          sku: this.product.sku,
+          status: this.product.status,
         })
         .then(res => {
           this.$router.push({ name: 'Inventory' });
@@ -91,7 +95,7 @@ export default {
   },
   created() {
     //fetch data from firestore by client id
-    const docId = this.$route.params.client_id;
+    const docId = this.$route.params.product_id;
     const ref = db.collection('inventory').doc(docId);
 
     ref
