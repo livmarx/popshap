@@ -10,10 +10,10 @@ import 'vuetify/dist/vuetify.min.css'; // Ensure you are using css-loadern
 Vue.config.productionTip = false;
 
 Vue.filter('snippet', val => {
-  if (!val || typeof val !== 'string' || val.length < 60) {
+  if (!val || typeof val !== 'string' || val.length < 79) {
     return val;
   } else {
-    val = val.slice(0, 120);
+    val = val.slice(0, 80);
     return val + '...';
   }
 });
