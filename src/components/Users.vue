@@ -41,9 +41,9 @@
                     <v-icon >delete</v-icon>
                   </v-btn>
                   <v-btn>
-                     <router-link :to="{name: 'SingleUser', params: {user_id: user.id}}">
-                    More Info
-                </router-link>
+                    <router-link :to="{name: 'SingleUser', params: {user_id: user.id}}">
+                      More Info
+                    </router-link>
                   </v-btn>
                 </v-card>
               </v-flex>

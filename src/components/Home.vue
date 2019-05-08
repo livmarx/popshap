@@ -5,16 +5,20 @@
         Home
       </h1>
     </div>
+    <Dashboard />
   </div>
 </template>
 
 <script>
+import Dashboard from '@/components/Dashboard';
 export default {
   name: 'Home',
   data() {
     return {};
   },
-  components: {},
+  components: {
+    Dashboard,
+  },
 };
 </script>
 

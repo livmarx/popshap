@@ -27,6 +27,8 @@
                     <br/>
                     Color: {{product.color}},
                     <br/>
+                    Controls: {{product.controls}},
+                    <br/>
                     Man. Name: {{product.manufacturerName}},
                     <br/>
                     Serial No.: {{product.serialNumber}},
