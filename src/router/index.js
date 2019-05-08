@@ -8,6 +8,7 @@ import Inventory from '@/components/Inventory';
 import AddUser from '@/components/AddUser';
 import AddClient from '@/components/AddClient';
 import AddProduct from '@/components/AddProduct';
+import SingleUser from '@/components/SingleUser';
 
 Vue.use(Router);
 
@@ -47,6 +48,11 @@ export default new Router({
       path: '/add-product',
       name: 'AddProduct',
       component: AddProduct,
+    },
+    {
+      path: '/user/:user_id',
+      name: 'SingleUser',
+      component: SingleUser,
     },
   ],
 });
