@@ -1,5 +1,5 @@
 <template>
-  <div class="clients">
+  <div class="client2">
     <div class="banner">
       <h1 class="grey--text text--lighten-2 display-2 font-weight-thin">Clients</h1>
     <v-btn class="grey darken-2 white--text">
@@ -45,7 +45,7 @@
 <script>
 import db from '@/firebase/init';
 export default {
-  name: 'Clients',
+  name: 'Client2',
   data() {
     return {
       clients: [],
