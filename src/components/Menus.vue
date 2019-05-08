@@ -4,10 +4,10 @@
     <!-- HEADER -->
       <v-toolbar-side-icon class="grey--text text--darken-1 " @click="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title >
-        <router-link :to="{name: 'Home'}">
+
         <span class="text-uppercase grey--text text--darken-1 headline font-weight-light ">p o p</span>
         <span class="text-uppercase grey--text text--darken-1 headline font-weight-bold ">s h a p</span>
-        </router-link>
+
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn flat color="grey">
@@ -26,13 +26,20 @@
         </v-list-tile>
       </v-list>
     </v-toolbar>
+    <v-btn flat color="grey">
+        <router-link  :to="{name: 'Home'}">
+          <p class="title text-uppercase grey--text text--lighten-2 font-weight-light subheading">Dashboard</p>
+        </router-link>
+      </v-btn>
+      <br/>
+      <v-divider></v-divider>
      <v-btn flat color="grey">
         <router-link  :to="{name: 'Inventory'}">
           <p class="title text-uppercase grey--text text--lighten-2 font-weight-light subheading">Inventory</p>
         </router-link>
       </v-btn>
       <br/>
-       <v-divider></v-divider>
+      <v-divider></v-divider>
       <v-btn flat color="grey">
         <router-link :to="{name: 'Users'}">
           <p class="title text-uppercase grey--text text--lighten-2 font-weight-light subheading">Users</p>
