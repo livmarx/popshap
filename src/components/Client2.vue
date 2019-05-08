@@ -1,10 +1,10 @@
 <template>
   <div class="client2">
     <div class="banner">
-      <h1 class="grey--text text--lighten-2 display-2 font-weight-thin">Clients</h1>
+      <h1 class="grey--text text--lighten-2 display-2 font-weight-thin">Inventory</h1>
     <v-btn class="grey darken-2 white--text">
-      <router-link :to="{name: 'AddClient'}">
-      New Client<v-icon>add</v-icon>
+      <router-link :to="{name: 'AddProduct'}">
+      New Product<v-icon>add</v-icon>
       </router-link>
     </v-btn>
     </div>
@@ -17,20 +17,28 @@
                 sm6
                 md4
                 lg3
-                v-for="(client, i) in clients"
+                v-for="(product, i) in inventory"
                 :key="i"
               >
                 <v-card flat tile >
                   <div class="custom-cards">
-                    <h3>{{client.name}}</h3>
-                    Industry: {{client.industry}},
+                    <h3>{{product.deviceType}}</h3>
+                    Client Name: {{product.clientName}},
                     <br/>
-                    Email: {{client.email}},
+                    Color: {{product.color}},
                     <br/>
-                    Phone: {{client.phone}},
+                    Man. Name: {{product.manufacturerName}},
+                    <br/>
+                    Serial No.: {{product.serialNumber}},
+                    <br/>
+                    Size: {{product.size}},
+                    <br/>
+                    SKU: {{product.sku}},
+                    <br/>
+                    Status: {{product.status}},
                     <br/>
                   </div>
-                  <v-btn flat class="mx-1 mt-0" @click="deleteClient(client.id)">
+                  <v-btn flat class="mx-1 mt-0" @click="deleteProduct(product.id)">
                     <v-icon >delete</v-icon>
                   </v-btn>
                 </v-card>
@@ -48,19 +56,19 @@ export default {
   name: 'Client2',
   data() {
     return {
-      clients: [],
+      inventory: [],
     };
   },
   methods: {
-    deleteClient(id) {
+    deleteProduct(id) {
       // delete doc/recie from firestore
       db
-        .collection('clients')
+        .collection('inventory')
         .doc(id)
         .delete()
         .then(() => {
-          this.clients = this.clients.filter(client => {
-            if (client.id.toString().match(id.toString())) {
+          this.inventory = this.inventory.filter(product => {
+            if (product.id.toString().match(id.toString())) {
               return false;
             } else {
               return true;
@@ -72,13 +80,13 @@ export default {
   created() {
     //fetch data from firestore
     db
-      .collection('clients')
+      .collection('inventory')
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
-          let client = doc.data();
-          client.id = doc.id;
-          this.clients.push(client);
+          let product = doc.data();
+          product.id = doc.id;
+          this.inventory.push(product);
         });
       });
   },
@@ -98,8 +106,8 @@ h1 {
 }
 .custom-cards {
   max-width: 200px;
-  min-height: 150px;
-  max-height: 150px;
+  min-height: 250px;
+  max-height: 250px;
   padding: 20px;
 }
 </style>
