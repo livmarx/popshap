@@ -8,7 +8,6 @@ import Inventory from '@/components/Inventory';
 import AddUser from '@/components/AddUser';
 import AddClient from '@/components/AddClient';
 import AddProduct from '@/components/AddProduct';
-import Client2 from '@/components/Client2';
 
 Vue.use(Router);
 
@@ -48,11 +47,6 @@ export default new Router({
       path: '/add-product',
       name: 'AddProduct',
       component: AddProduct,
-    },
-    {
-      path: '/client2',
-      name: 'Client2',
-      component: Client2,
     },
   ],
 });
