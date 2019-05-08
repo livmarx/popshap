@@ -18,24 +18,19 @@ export default {
   methods: {},
   created() {
     //fetch data from firestore by user id
-    console.log('start of created life hook!');
-    console.log('this.$route.params.user_id: ', this.$route.params.user_id);
-    let ref = db
-      .collection('users')
-      .where('id', '==', this.$route.params.user_id);
-    console.log('ref: ', ref);
-    ref.get().then(snapshot => {
-      console.log('snapshot: ', snapshot);
-      console.log('snapshot.length: ', snapshot.length);
-      console.log('typeof snapshot: ', typeof snapshot);
-      snapshot.forEach(doc => {
-        console.log('doc', doc);
-        console.log('doc.data()', doc.data());
-        this.user = doc.data();
-        this.user.id = doc.id;
+    const docId = this.$route.params.user_id;
+    const ref = db.collection('users').doc(docId);
+
+    ref
+      .get()
+      .then(res => {
+        console.log(res.data());
+        this.user = res.data();
         console.log(this.user);
+      })
+      .catch(err => {
+        console.error(err);
       });
-    });
   },
 };
 </script>
