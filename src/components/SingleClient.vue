@@ -1,41 +1,33 @@
 <template>
-  <div class="users">
+  <div class="single-client">
     <div class="banner">
       <h1 class="grey--text text--lighten-2 display-2 font-weight-thin">
-        {{user.firstName}} {{user.lastName}}
+        {{client.name}}
       </h1>
     </div>
     <br/>
     <div>
-      <v-form class="px-5" >
-        <v-text-field
-          label="First Name"
-          v-model="user.firstName"
-        ></v-text-field>
-        <v-text-field
-          label="Last Name"
-          v-model="user.lastName"
-        ></v-text-field>
-        <v-text-field
-          label="Role"
-          v-model="user.role"
-        ></v-text-field>
-        <v-text-field
-          label="Email"
-          v-model="user.email"
-        ></v-text-field>
-        <v-text-field
-          label="Phone"
-          v-model="user.phone"
-        ></v-text-field>
-        <v-text-field
-          label="Notes"
-          v-model="user.notes"
-        ></v-text-field>
-        <v-btn
-          class="mx-0 mt-3"
-          @click="updateUser"
-        >Update User Info</v-btn>
+     <v-form class="px-5">
+      <v-text-field
+        label="Name"
+        v-model="client.name"
+      ></v-text-field>
+      <v-text-field
+        label="Industry"
+        v-model="client.industry"
+      ></v-text-field>
+      <v-text-field
+        label="Email"
+        v-model="client.email"
+      ></v-text-field>
+      <v-text-field
+        label="Phone"
+        v-model="client.phone"
+      ></v-text-field>
+      <v-btn
+        class="mx-0 mt-3"
+        @click="updateClient"
+      >Update Client Info</v-btn>
       </v-form>
     </div>
   </div>
@@ -44,28 +36,26 @@
 <script>
 import db from '@/firebase/init';
 export default {
-  name: 'SingleUser',
+  name: 'SingleClient',
   data() {
     return {
       user: {},
     };
   },
   methods: {
-    updateUser() {
-      const docId = this.$route.params.user_id;
-      const ref = db.collection('users').doc(docId);
+    updateClient() {
+      const docId = this.$route.params.client_id;
+      const ref = db.collection('clients').doc(docId);
 
       ref
         .update({
-          firstName: this.user.firstName,
-          lastName: this.user.lastName,
-          role: this.user.role,
-          email: this.user.email,
-          phone: this.user.phone,
-          notes: this.user.notes,
+          name: this.name,
+          industry: this.industry,
+          email: this.email,
+          phone: this.phone,
         })
         .then(res => {
-          this.$router.push({ name: 'Users' });
+          this.$router.push({ name: 'Clients' });
         })
         .catch(err => {
           console.error(err);
@@ -73,16 +63,14 @@ export default {
     },
   },
   created() {
-    //fetch data from firestore by user id
-    const docId = this.$route.params.user_id;
-    const ref = db.collection('users').doc(docId);
+    //fetch data from firestore by client id
+    const docId = this.$route.params.client_id;
+    const ref = db.collection('clients').doc(docId);
 
     ref
       .get()
       .then(res => {
-        console.log(res.data());
-        this.user = res.data();
-        console.log(this.user);
+        this.client = res.data();
       })
       .catch(err => {
         console.error(err);

@@ -1,5 +1,5 @@
 <template>
-  <div class="users">
+  <div class="single-users">
     <div class="banner">
       <h1 class="grey--text text--lighten-2 display-2 font-weight-thin">
         {{user.firstName}} {{user.lastName}}

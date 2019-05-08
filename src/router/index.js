@@ -9,6 +9,7 @@ import AddUser from '@/components/AddUser';
 import AddClient from '@/components/AddClient';
 import AddProduct from '@/components/AddProduct';
 import SingleUser from '@/components/SingleUser';
+import SingleClient from '@/components/SingleClient';
 
 Vue.use(Router);
 
@@ -53,6 +54,11 @@ export default new Router({
       path: '/user/:user_id',
       name: 'SingleUser',
       component: SingleUser,
+    },
+    {
+      path: '/client/:client_id',
+      name: 'SingleClient',
+      component: SingleClient,
     },
   ],
 });
