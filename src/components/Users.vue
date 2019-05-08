@@ -20,6 +20,7 @@
                 v-for="(user, i) in users"
                 :key="i"
               >
+
                 <v-card flat tile >
                   <div class="custom-cards">
                     <h3>{{user.firstName}} {{user.lastName}}</h3>
@@ -35,8 +36,14 @@
                     {{user.notes | snippet}}
                     <br/>
                   </div>
+
                   <v-btn flat class="mx-1 mt-0" @click="deleteUser(user.id)">
                     <v-icon >delete</v-icon>
+                  </v-btn>
+                  <v-btn>
+                     <router-link :to="{name: 'SingleUser', params: {user_id: user.id}}">
+                    More Info
+                </router-link>
                   </v-btn>
                 </v-card>
               </v-flex>
