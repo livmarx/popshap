@@ -14,6 +14,7 @@
       <v-text-field
         label="Search..."
         v-model="searchInput.seachString"
+
         solo
       ></v-text-field>
     </v-flex>
@@ -67,7 +68,7 @@
 
 <script>
 import db from '@/firebase/init';
-import { truncate } from 'fs';
+// import { truncate } from 'fs';
 export default {
   name: 'Users',
   data() {
@@ -79,6 +80,25 @@ export default {
     };
   },
   methods: {
+    // search() {
+    //   console.log('IN SEARCH');
+    //   if (this.searchInput.seachString) {
+    //     let search = this.searchInput.seachString.toLowerCase();
+    //     console.log(search);
+    //     // return this.users.filter(user => {
+    //     //   if (
+    //     //     user.firstName.toLowerCase().match(search) ||
+    //     //     user.lastName.toLowerCase().match(search) ||
+    //     //     user.email.toLowerCase().match(search) ||
+    //     //     user.phone.toLowerCase().match(search)
+    //     //   ) {
+    //     //     return true;
+    //     //   } else {
+    //     //     return false;
+    //     //   }
+    //     // });
+    //   }
+    // },
     deleteUser(id) {
       // delete doc/recipe from firestore
       db
@@ -98,7 +118,16 @@ export default {
   },
   computed: {
     filteredResults: function() {
-      let search = this.searchInput.seachString.toLowerCase();
+      console.log(
+        'this.searchInput.seachString: ',
+        this.searchInput.seachString
+      );
+
+      if (this.searchInput.seachString) {
+        let search = this.searchInput.seachString.toLowerCase();
+      } else {
+        let search;
+      }
       return this.users.filter(user => {
         if (
           user.firstName.toLowerCase().match(search) ||
@@ -111,6 +140,7 @@ export default {
           return false;
         }
       });
+      //}
     },
   },
   created() {

@@ -4,8 +4,9 @@
       <h1 class="grey--text text--lighten-2 display-2 font-weight-thin">
         SEARCH / Users
       </h1>
+
       <v-btn class="grey darken-2 white--text">
-        <router-link :to="{name: 'AddUser'}">
+        <router-link :to="{name: 'AddUser '}">
           New User<v-icon>add</v-icon>
         </router-link>
       </v-btn>
@@ -23,6 +24,21 @@
       v-model="searchInput.selectedRole"
     ></v-select>
     </v-flex>
+    <!-- sort by: -->
+     <v-layout row class="mb-3">
+        <v-btn flat color="grey" @click="sortAZ('firstName')">
+          <span>By First Name: A-Z</span>
+        </v-btn>
+         <v-btn flat color="grey" @click="sortZA('firstName')">
+          <span>By First Name: Z-A</span>
+        </v-btn>
+         <v-btn flat color="grey" @click="sortAZ('lastName')">
+          <span>By Last Name: A-Z</span>
+        </v-btn>
+         <v-btn flat color="grey" @click="sortZA('lastName')">
+          <span>By Last  Name: Z-A</span>
+        </v-btn>
+      </v-layout>
  <!-- Card  layout starts here -->
     <v-layout>
       <v-flex >
@@ -73,7 +89,7 @@
 
 <script>
 import db from '@/firebase/init';
-import { truncate } from 'fs';
+// import { truncate } from 'fs';
 export default {
   name: 'SearchBar',
   data() {
@@ -123,6 +139,22 @@ export default {
           return false;
         }
       });
+    },
+  },
+  methods: {
+    sortAZ(sortType) {
+      console.log(sortType);
+      this.users.sort(
+        (a, b) =>
+          a[sortType].toLowerCase() < b[sortType].toLowerCase() ? -1 : 1
+      );
+    },
+    sortZA(sortType) {
+      console.log(sortType);
+      this.users.sort(
+        (a, b) =>
+          a[sortType].toLowerCase() < b[sortType].toLowerCase() ? 1 : -1
+      );
     },
   },
   created() {
