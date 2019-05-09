@@ -1,13 +1,23 @@
 <template>
   <div class="users">
     <div class="banner">
-      <h1 class="grey--text text--lighten-2 display-2 font-weight-thin">Users</h1>
-    <v-btn class="grey darken-2 white--text">
-      <router-link :to="{name: 'AddUser'}">
-      New User<v-icon>add</v-icon>
-      </router-link>
-    </v-btn>
+      <h1 class="grey--text text--lighten-2 display-2 font-weight-thin">
+        Users
+      </h1>
+      <v-btn class="grey darken-2 white--text">
+        <router-link :to="{name: 'AddUser'}">
+          New User<v-icon>add</v-icon>
+        </router-link>
+      </v-btn>
     </div>
+    <v-flex xs12 s12 sm12 md12 class="search-input">
+      <v-text-field
+        label="Search..."
+        v-model="searchInput.seachString"
+        solo
+      ></v-text-field>
+    </v-flex>
+ <!-- Card  layout starts here -->
     <v-layout>
       <v-flex >
           <v-container fluid grid-list-md>
@@ -17,13 +27,14 @@
                 sm6
                 md4
                 lg3
-                v-for="(user, i) in users"
+                v-for="(user, i) in filteredResults"
                 :key="i"
               >
-
                 <v-card flat tile >
                   <div class="custom-cards">
-                    <h3>{{user.firstName}} {{user.lastName}}</h3>
+                    <h3>
+                      {{user.firstName}} {{user.lastName}}
+                    </h3>
                     Role: {{user.role}},
                     <br/>
                     Email: {{user.email}},
@@ -56,16 +67,21 @@
 
 <script>
 import db from '@/firebase/init';
+import { truncate } from 'fs';
 export default {
   name: 'Users',
   data() {
     return {
       users: [],
+      items: ['client', 'admin', 'superadmin'],
+      searchInput: {
+        seachString: '',
+      },
     };
   },
   methods: {
     deleteUser(id) {
-      // delete doc/recie from firestore
+      // delete doc/recipe from firestore
       db
         .collection('users')
         .doc(id)
@@ -81,15 +97,29 @@ export default {
         });
     },
   },
+  computed: {
+    filteredResults: function() {
+      let search = this.searchInput.seachString.toLowerCase();
+      return this.users.filter(user => {
+        if (
+          user.firstName.toLowerCase().match(search) ||
+          user.lastName.toLowerCase().match(search) ||
+          user.email.toLowerCase().match(search) ||
+          user.phone.toLowerCase().match(search)
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+    },
+  },
   created() {
     //fetch data from firestore
     db
       .collection('users')
       .get()
       .then(snapshot => {
-        console.log('snapshot: ', snapshot);
-        console.log('snapshot.length: ', snapshot.length);
-        console.log('typeof snapshot: ', typeof snapshot);
         snapshot.forEach(doc => {
           let user = doc.data();
           user.id = doc.id;
@@ -115,5 +145,8 @@ h1 {
   max-width: 300px;
   min-height: 260px;
   padding: 20px;
+}
+.search-input {
+  margin: 16px;
 }
 </style>

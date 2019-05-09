@@ -8,6 +8,13 @@
       </router-link>
     </v-btn>
     </div>
+     <v-flex xs12 s12 sm12 md12 class="search-input">
+      <v-text-field
+        label="Search..."
+        v-model="searchInput.seachString"
+        solo
+      ></v-text-field>
+    </v-flex>
     <v-layout>
       <v-flex >
           <v-container fluid grid-list-md>
@@ -17,7 +24,7 @@
                 sm6
                 md4
                 lg3
-                v-for="(client, i) in clients"
+                v-for="(client, i) in filteredResults"
                 :key="i"
               >
                 <v-card flat tile >
@@ -54,6 +61,9 @@ export default {
   data() {
     return {
       clients: [],
+      searchInput: {
+        seachString: '',
+      },
     };
   },
   methods: {
@@ -72,6 +82,22 @@ export default {
             }
           });
         });
+    },
+  },
+  computed: {
+    filteredResults: function() {
+      let search = this.searchInput.seachString.toLowerCase();
+      return this.clients.filter(client => {
+        if (
+          client.name.toLowerCase().match(search) ||
+          client.email.toLowerCase().match(search) ||
+          client.phone.toLowerCase().match(search)
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      });
     },
   },
   created() {
@@ -106,5 +132,8 @@ h1 {
   min-height: 150px;
   max-height: 150px;
   padding: 20px;
+}
+.search-input {
+  margin: 16px;
 }
 </style>

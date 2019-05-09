@@ -18,12 +18,12 @@
       ></v-text-field>
       <v-select
       label="Filter by Role"
-      :items="['client', 'admin', 'superadmin']"
+      :items="items"
       solo
-      v-model="searchInput.roleType"
+      v-model="searchInput.selectedRole"
     ></v-select>
     </v-flex>
-
+ <!-- Card  layout starts here -->
     <v-layout>
       <v-flex >
           <v-container fluid grid-list-md>
@@ -73,20 +73,22 @@
 
 <script>
 import db from '@/firebase/init';
+import { truncate } from 'fs';
 export default {
   name: 'SearchBar',
   data() {
     return {
       users: [],
+      items: ['client', 'admin', 'superadmin'],
       searchInput: {
-        roleType: null,
+        selectedRole: '',
         seachString: '',
       },
     };
   },
   methods: {
     deleteUser(id) {
-      // delete doc/recie from firestore
+      // delete doc/recipe from firestore
       db
         .collection('users')
         .doc(id)
@@ -106,30 +108,21 @@ export default {
     filteredResults: function() {
       // if (this.searchInput.seachString) {
       let search = this.searchInput.seachString.toLowerCase();
-      //let filterRole = this.searchInput.roleType.toLowerCase();
+      let filterRole = this.searchInput.selectedRole.toLowerCase();
       return this.users.filter(user => {
         if (
           user.firstName.toLowerCase().match(search) ||
           user.lastName.toLowerCase().match(search) ||
           user.email.toLowerCase().match(search) ||
           user.phone.toLowerCase().match(search)
-          // ||
-          // user.role.toLowerCase().match(search)
         ) {
           return true;
+          // } else if (user.role.toLowerCase().match(filterRole)) {
+          //   return true;
         } else {
           return false;
         }
       });
-      // } else if (this.searchInput.roleType) {
-      //   return this.users.filter(user => {
-      //     if (user.role().match(this.searchInput.roleType)) {
-      //       return true;
-      //     } else {
-      //       return false;
-      //     }
-      //   });
-      // }
     },
   },
   created() {
@@ -165,6 +158,6 @@ h1 {
   padding: 20px;
 }
 .search-input {
-  margin: 30px;
+  margin: 16px;
 }
 </style>
