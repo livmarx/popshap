@@ -2,7 +2,7 @@
   <div class="single-product">
     <div class="banner">
       <h1 class="grey--text text--lighten-2 display-2 font-weight-thin">
-        {{product.deviceType}}
+        {{product.deviceType}}: {{this.$route.params.product_id}}
       </h1>
     </div>
     <br/>

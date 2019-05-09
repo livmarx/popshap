@@ -73,7 +73,6 @@ export default {
   data() {
     return {
       users: [],
-      items: ['client', 'admin', 'superadmin'],
       searchInput: {
         seachString: '',
       },
