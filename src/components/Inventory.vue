@@ -8,6 +8,13 @@
       </router-link>
     </v-btn>
     </div>
+    <v-flex xs12 s12 sm12 md12 class="search-input">
+      <v-text-field
+        label="Search..."
+        v-model="searchInput.seachString"
+        solo
+      ></v-text-field>
+    </v-flex>
     <v-layout>
       <v-flex >
           <v-container fluid grid-list-md>
@@ -17,7 +24,7 @@
                 sm6
                 md4
                 lg3
-                v-for="(product, i) in inventory"
+                v-for="(product, i) in filteredResults"
                 :key="i"
               >
                 <v-card flat tile >
@@ -64,6 +71,9 @@ export default {
   data() {
     return {
       inventory: [],
+      searchInput: {
+        seachString: '',
+      },
     };
   },
   methods: {
@@ -82,6 +92,28 @@ export default {
             }
           });
         });
+    },
+  },
+  computed: {
+    filteredResults: function() {
+      let search = this.searchInput.seachString.toLowerCase();
+      return this.inventory.filter(product => {
+        if (
+          product.clientName.toLowerCase().match(search) ||
+          product.color.toLowerCase().match(search) ||
+          product.deviceType.toLowerCase().match(search) ||
+          product.manufacturerName.toLowerCase().match(search) ||
+          product.controls.toLowerCase().match(search) ||
+          product.serialNumber.toLowerCase().match(search) ||
+          product.size.toLowerCase().match(search) ||
+          product.sku.toLowerCase().match(search) ||
+          product.status.toLowerCase().match(search)
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      });
     },
   },
   created() {
@@ -117,5 +149,8 @@ h1 {
   min-height: 250px;
   max-height: 250px;
   padding: 20px;
+}
+.search-input {
+  margin: 16px;
 }
 </style>
