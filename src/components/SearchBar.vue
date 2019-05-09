@@ -1,13 +1,14 @@
 <template>
-  <div class="client2">
+  <div class="search-bar">
     <div class="banner">
-      <h1 class="grey--text text--lighten-2 display-2 font-weight-thin">Inventory</h1>
+      <h1 class="grey--text text--lighten-2 display-2 font-weight-thin">SEARCH / Users</h1>
     <v-btn class="grey darken-2 white--text">
-      <router-link :to="{name: 'AddProduct'}">
-      New Product<v-icon>add</v-icon>
+      <router-link :to="{name: 'AddUser'}">
+      New User<v-icon>add</v-icon>
       </router-link>
     </v-btn>
     </div>
+    <input type="text">
     <v-layout>
       <v-flex >
           <v-container fluid grid-list-md>
@@ -17,34 +18,31 @@
                 sm6
                 md4
                 lg3
-                v-for="(product, i) in inventory"
+                v-for="(user, i) in users"
                 :key="i"
               >
+
                 <v-card flat tile >
                   <div class="custom-cards">
-                    <h3>{{product.deviceType}}</h3>
-                    Client Name: {{product.clientName}},
+                    <h3>{{user.firstName}} {{user.lastName}}</h3>
+                    Role: {{user.role}},
                     <br/>
-                    Color: {{product.color}},
+                    Email: {{user.email}},
                     <br/>
-                    Controls: {{product.controls}},
+                    Phone: {{user.phone}},
                     <br/>
-                    Man. Name: {{product.manufacturerName}},
                     <br/>
-                    Serial No.: {{product.serialNumber}},
+                    Notes:
                     <br/>
-                    Size: {{product.size}},
-                    <br/>
-                    SKU: {{product.sku}},
-                    <br/>
-                    Status: {{product.status}},
+                    {{user.notes | snippet}}
                     <br/>
                   </div>
-                  <v-btn flat class="mx-1 mt-0" @click="deleteProduct(product.id)">
+
+                  <v-btn flat class="mx-1 mt-0" @click="deleteUser(user.id)">
                     <v-icon >delete</v-icon>
                   </v-btn>
                   <v-btn>
-                    <router-link :to="{name: 'SingleProduct', params: {product_id: product.id}}">
+                    <router-link :to="{name: 'SingleUser', params: {user_id: user.id}}">
                       More Info
                     </router-link>
                   </v-btn>
@@ -60,22 +58,22 @@
 <script>
 import db from '@/firebase/init';
 export default {
-  name: 'Client2',
+  name: 'SearchBar',
   data() {
     return {
-      inventory: [],
+      users: [],
     };
   },
   methods: {
-    deleteProduct(id) {
+    deleteUser(id) {
       // delete doc/recie from firestore
       db
-        .collection('inventory')
+        .collection('users')
         .doc(id)
         .delete()
         .then(() => {
-          this.inventory = this.inventory.filter(product => {
-            if (product.id.toString().match(id.toString())) {
+          this.users = this.users.filter(user => {
+            if (user.id.toString().match(id.toString())) {
               return false;
             } else {
               return true;
@@ -87,13 +85,16 @@ export default {
   created() {
     //fetch data from firestore
     db
-      .collection('inventory')
+      .collection('users')
       .get()
       .then(snapshot => {
+        console.log('snapshot: ', snapshot);
+        console.log('snapshot.length: ', snapshot.length);
+        console.log('typeof snapshot: ', typeof snapshot);
         snapshot.forEach(doc => {
-          let product = doc.data();
-          product.id = doc.id;
-          this.inventory.push(product);
+          let user = doc.data();
+          user.id = doc.id;
+          this.users.push(user);
         });
       });
   },
@@ -112,10 +113,8 @@ h1 {
   background-color: slategray;
 }
 .custom-cards {
-  max-width: 200px;
-  min-width: 150px;
-  min-height: 250px;
-  max-height: 250px;
+  max-width: 300px;
+  min-height: 260px;
   padding: 20px;
 }
 </style>

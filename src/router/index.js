@@ -11,6 +11,7 @@ import AddProduct from '@/components/AddProduct';
 import SingleUser from '@/components/SingleUser';
 import SingleClient from '@/components/SingleClient';
 import SingleProduct from '@/components/SingleProduct';
+import SearchBar from '@/components/SearchBar';
 
 Vue.use(Router);
 
@@ -65,6 +66,11 @@ export default new Router({
       path: '/product/:product_id',
       name: 'SingleProduct',
       component: SingleProduct,
+    },
+    {
+      path: '/search-bar',
+      name: 'SearchBar',
+      component: SearchBar,
     },
   ],
 });
