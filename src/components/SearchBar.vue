@@ -13,9 +13,15 @@
     <v-flex xs12 s12 sm12 md12 class="search-input">
       <v-text-field
         label="Search..."
-        v-model="searchInput"
+        v-model="searchInput.seachString"
         solo
       ></v-text-field>
+      <v-select
+      label="Filter by Role"
+      :items="['client', 'admin', 'superadmin']"
+      solo
+      v-model="searchInput.roleType"
+    ></v-select>
     </v-flex>
 
     <v-layout>
@@ -72,7 +78,10 @@ export default {
   data() {
     return {
       users: [],
-      searchInput: '',
+      searchInput: {
+        roleType: null,
+        seachString: '',
+      },
     };
   },
   methods: {
@@ -95,20 +104,32 @@ export default {
   },
   computed: {
     filteredResults: function() {
-      let search = this.searchInput.toLowerCase();
-
+      // if (this.searchInput.seachString) {
+      let search = this.searchInput.seachString.toLowerCase();
+      //let filterRole = this.searchInput.roleType.toLowerCase();
       return this.users.filter(user => {
         if (
           user.firstName.toLowerCase().match(search) ||
           user.lastName.toLowerCase().match(search) ||
           user.email.toLowerCase().match(search) ||
           user.phone.toLowerCase().match(search)
+          // ||
+          // user.role.toLowerCase().match(search)
         ) {
           return true;
         } else {
           return false;
         }
       });
+      // } else if (this.searchInput.roleType) {
+      //   return this.users.filter(user => {
+      //     if (user.role().match(this.searchInput.roleType)) {
+      //       return true;
+      //     } else {
+      //       return false;
+      //     }
+      //   });
+      // }
     },
   },
   created() {

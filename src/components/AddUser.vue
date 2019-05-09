@@ -26,10 +26,10 @@
         label="Phone"
         v-model="phone"
       ></v-text-field>
-      <v-text-field
+      <v-textarea
         label="Notes"
         v-model="notes"
-      ></v-text-field>
+      ></v-textarea>
       <v-btn
         class="mx-0 mt-3"
         @click="submit"

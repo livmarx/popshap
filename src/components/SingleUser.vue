@@ -28,10 +28,10 @@
           label="Phone"
           v-model="user.phone"
         ></v-text-field>
-        <v-text-field
+        <v-textarea
           label="Notes"
           v-model="user.notes"
-        ></v-text-field>
+        ></v-textarea>
         <v-btn
           class="mx-0 mt-3"
           @click="updateUser"
