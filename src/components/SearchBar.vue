@@ -89,7 +89,6 @@
 
 <script>
 import db from '@/firebase/init';
-// import { truncate } from 'fs';
 export default {
   name: 'SearchBar',
   data() {
