@@ -142,6 +142,25 @@ export default {
     },
   },
   methods: {
+    // search() {
+    //   console.log('IN SEARCH');
+    //   if (this.searchInput.seachString) {
+    //     let search = this.searchInput.seachString.toLowerCase();
+    //     console.log(search);
+    //     // return this.users.filter(user => {
+    //     //   if (
+    //     //     user.firstName.toLowerCase().match(search) ||
+    //     //     user.lastName.toLowerCase().match(search) ||
+    //     //     user.email.toLowerCase().match(search) ||
+    //     //     user.phone.toLowerCase().match(search)
+    //     //   ) {
+    //     //     return true;
+    //     //   } else {
+    //     //     return false;
+    //     //   }
+    //     // });
+    //   }
+    // },
     sortAZ(sortType) {
       console.log(sortType);
       this.users.sort(
@@ -193,3 +212,5 @@ h1 {
   margin: 16px;
 }
 </style>
+
+
