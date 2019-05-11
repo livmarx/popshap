@@ -124,17 +124,19 @@ export default {
     },
     sortAZ(sortType) {
       console.log(sortType);
-      this.users.sort(
-        (a, b) =>
-          a[sortType].toLowerCase() < b[sortType].toLowerCase() ? -1 : 1
-      );
+      this.users.sort((a, b) => {
+        if (a[sortType] && b[sortType]) {
+          return a[sortType].toLowerCase() < b[sortType].toLowerCase() ? -1 : 1;
+        }
+      });
     },
     sortZA(sortType) {
       console.log(sortType);
-      this.users.sort(
-        (a, b) =>
-          a[sortType].toLowerCase() < b[sortType].toLowerCase() ? 1 : -1
-      );
+      this.users.sort((a, b) => {
+        if (a[sortType] && b[sortType]) {
+          return a[sortType].toLowerCase() < b[sortType].toLowerCase() ? 1 : -1;
+        }
+      });
     },
   },
   computed: {
