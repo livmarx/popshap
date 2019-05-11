@@ -96,13 +96,17 @@ export default {
     sortAZ(sortType) {
       console.log(sortType);
       this.clients.sort((a, b) => {
-        return a[sortType].toLowerCase() < b[sortType].toLowerCase() ? -1 : 1;
+        if (a[sortType] && b[sortType]) {
+          return a[sortType].toLowerCase() < b[sortType].toLowerCase() ? -1 : 1;
+        }
       });
     },
     sortZA(sortType) {
       console.log(sortType);
       this.clients.sort((a, b) => {
-        return a[sortType].toLowerCase() < b[sortType].toLowerCase() ? 1 : -1;
+        if (a[sortType] && b[sortType]) {
+          return a[sortType].toLowerCase() < b[sortType].toLowerCase() ? 1 : -1;
+        }
       });
     },
   },
