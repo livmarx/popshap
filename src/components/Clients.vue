@@ -95,17 +95,15 @@ export default {
     },
     sortAZ(sortType) {
       console.log(sortType);
-      this.clients.sort(
-        (a, b) =>
-          a[sortType].toLowerCase() < b[sortType].toLowerCase() ? -1 : 1
-      );
+      this.clients.sort((a, b) => {
+        return a[sortType].toLowerCase() < b[sortType].toLowerCase() ? -1 : 1;
+      });
     },
     sortZA(sortType) {
       console.log(sortType);
-      this.clients.sort(
-        (a, b) =>
-          a[sortType].toLowerCase() < b[sortType].toLowerCase() ? 1 : -1
-      );
+      this.clients.sort((a, b) => {
+        return a[sortType].toLowerCase() < b[sortType].toLowerCase() ? 1 : -1;
+      });
     },
   },
   computed: {

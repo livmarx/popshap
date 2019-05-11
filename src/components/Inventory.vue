@@ -18,10 +18,10 @@
     </v-flex>
      <!-- Sort by: -->
      <v-layout row class="mb-3">
-        <v-btn flat color="grey" @click="sortAZ('name')">
+        <v-btn flat color="grey" @click="sortAZ('clientName')">
           <span>Name: A-Z</span>
         </v-btn>
-         <v-btn flat color="grey" @click="sortZA('name')">
+         <v-btn flat color="grey" @click="sortZA('clientName')">
           <span>Name: Z-A</span>
         </v-btn>
       </v-layout>
@@ -106,17 +106,19 @@ export default {
     },
     sortAZ(sortType) {
       console.log(sortType);
-      this.users.sort(
-        (a, b) =>
-          a[sortType].toLowerCase() < b[sortType].toLowerCase() ? -1 : 1
-      );
+      this.inventory.sort((a, b) => {
+        if (a[sortType] && b[sortType]) {
+          return a[sortType].toLowerCase() < b[sortType].toLowerCase() ? -1 : 1;
+        }
+      });
     },
     sortZA(sortType) {
       console.log(sortType);
-      this.users.sort(
-        (a, b) =>
-          a[sortType].toLowerCase() < b[sortType].toLowerCase() ? 1 : -1
-      );
+      this.inventory.sort((a, b) => {
+        if (a[sortType] && b[sortType]) {
+          return a[sortType].toLowerCase() < b[sortType].toLowerCase() ? 1 : -1;
+        }
+      });
     },
   },
   computed: {
