@@ -89,9 +89,9 @@ export default {
       let search = this.searchInput.seachString.toLowerCase();
       return this.clients.filter(client => {
         if (
-          client.name.toLowerCase().match(search) ||
-          client.email.toLowerCase().match(search) ||
-          client.phone.toLowerCase().match(search)
+          (client.name && client.name.toLowerCase().match(search)) ||
+          (client.email && client.email.toLowerCase().match(search)) ||
+          (client.phone && client.phone.toLowerCase().match(search))
         ) {
           return true;
         } else {

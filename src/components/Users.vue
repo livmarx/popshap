@@ -68,6 +68,18 @@
 <script>
 import db from '@/firebase/init';
 import { truncate } from 'fs';
+
+// const fields = [
+//   {
+//     field: "lastName",
+//     display: "Last name"
+//   },
+//   {
+//     field: "firstName",
+//     ...
+//   }
+// ]
+
 export default {
   name: 'Users',
   data() {
@@ -99,12 +111,15 @@ export default {
   computed: {
     filteredResults: function() {
       let search = this.searchInput.seachString.toLowerCase();
+
+      // return this.users.filter(user => fields.some(field => user[field] && user[field].toLowerCase().match(search)))
+
       return this.users.filter(user => {
         if (
-          user.firstName.toLowerCase().match(search) ||
-          user.lastName.toLowerCase().match(search) ||
-          user.email.toLowerCase().match(search) ||
-          user.phone.toLowerCase().match(search)
+          (user.firstName && user.firstName.toLowerCase().match(search)) ||
+          (user.lastName && user.lastName.toLowerCase().match(search)) ||
+          (user.email && user.email.toLowerCase().match(search)) ||
+          (user.phone && user.phone.toLowerCase().match(search))
         ) {
           return true;
         } else {

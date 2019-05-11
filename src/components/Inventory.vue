@@ -99,15 +99,19 @@ export default {
       let search = this.searchInput.seachString.toLowerCase();
       return this.inventory.filter(product => {
         if (
-          product.clientName.toLowerCase().match(search) ||
-          product.color.toLowerCase().match(search) ||
-          product.deviceType.toLowerCase().match(search) ||
-          product.manufacturerName.toLowerCase().match(search) ||
-          product.controls.toLowerCase().match(search) ||
-          product.serialNumber.toLowerCase().match(search) ||
-          product.size.toLowerCase().match(search) ||
-          product.sku.toLowerCase().match(search) ||
-          product.status.toLowerCase().match(search)
+          (product.clientName &&
+            product.clientName.toLowerCase().match(search)) ||
+          (product.color && product.color.toLowerCase().match(search)) ||
+          (product.deviceType &&
+            product.deviceType.toLowerCase().match(search)) ||
+          (product.manufacturerName &&
+            product.manufacturerName.toLowerCase().match(search)) ||
+          (product.controls && product.controls.toLowerCase().match(search)) ||
+          (product.serialNumber &&
+            product.serialNumber.toLowerCase().match(search)) ||
+          (product.size && product.size.toLowerCase().match(search)) ||
+          (product.sku && product.sku.toLowerCase().match(search)) ||
+          (product.status && product.status.toLowerCase().match(search))
         ) {
           return true;
         } else {
