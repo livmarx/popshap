@@ -8,6 +8,7 @@
       </router-link>
     </v-btn>
     </div>
+     <!-- Search bar: -->
     <v-flex xs12 s12 sm12 md12 class="search-input">
       <v-text-field
         label="Search..."
@@ -15,6 +16,16 @@
         solo
       ></v-text-field>
     </v-flex>
+     <!-- Sort by: -->
+     <v-layout row class="mb-3">
+        <v-btn flat color="grey" @click="sortAZ('clientName')">
+          <span>Name: A-Z</span>
+        </v-btn>
+         <v-btn flat color="grey" @click="sortZA('clientName')">
+          <span>Name: Z-A</span>
+        </v-btn>
+      </v-layout>
+      <!-- Card layout starts here: -->
     <v-layout>
       <v-flex >
           <v-container fluid grid-list-md>
@@ -92,6 +103,22 @@ export default {
             }
           });
         });
+    },
+    sortAZ(sortType) {
+      console.log(sortType);
+      this.inventory.sort((a, b) => {
+        if (a[sortType] && b[sortType]) {
+          return a[sortType].toLowerCase() < b[sortType].toLowerCase() ? -1 : 1;
+        }
+      });
+    },
+    sortZA(sortType) {
+      console.log(sortType);
+      this.inventory.sort((a, b) => {
+        if (a[sortType] && b[sortType]) {
+          return a[sortType].toLowerCase() < b[sortType].toLowerCase() ? 1 : -1;
+        }
+      });
     },
   },
   computed: {
