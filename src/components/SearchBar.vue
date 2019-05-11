@@ -126,14 +126,12 @@ export default {
       let filterRole = this.searchInput.selectedRole.toLowerCase();
       return this.users.filter(user => {
         if (
-          user.firstName.toLowerCase().match(search) ||
-          user.lastName.toLowerCase().match(search) ||
-          user.email.toLowerCase().match(search) ||
-          user.phone.toLowerCase().match(search)
+          (user.firstName && user.firstName.toLowerCase().match(search)) ||
+          (user.lastName && user.lastName.toLowerCase().match(search)) ||
+          (user.email && user.email.toLowerCase().match(search)) ||
+          (user.phone && user.phone.toLowerCase().match(search))
         ) {
           return true;
-          // } else if (user.role.toLowerCase().match(filterRole)) {
-          //   return true;
         } else {
           return false;
         }

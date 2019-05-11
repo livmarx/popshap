@@ -17,6 +17,21 @@
         solo
       ></v-text-field>
     </v-flex>
+     <!-- sort by: -->
+     <v-layout row class="mb-3">
+        <v-btn flat color="grey" @click="sortAZ('firstName')">
+          <span>By First Name: A-Z</span>
+        </v-btn>
+         <v-btn flat color="grey" @click="sortZA('firstName')">
+          <span>By First Name: Z-A</span>
+        </v-btn>
+         <v-btn flat color="grey" @click="sortAZ('lastName')">
+          <span>By Last Name: A-Z</span>
+        </v-btn>
+         <v-btn flat color="grey" @click="sortZA('lastName')">
+          <span>By Last  Name: Z-A</span>
+        </v-btn>
+      </v-layout>
  <!-- Card  layout starts here -->
     <v-layout>
       <v-flex >
@@ -106,6 +121,20 @@ export default {
             }
           });
         });
+    },
+    sortAZ(sortType) {
+      console.log(sortType);
+      this.users.sort(
+        (a, b) =>
+          a[sortType].toLowerCase() < b[sortType].toLowerCase() ? -1 : 1
+      );
+    },
+    sortZA(sortType) {
+      console.log(sortType);
+      this.users.sort(
+        (a, b) =>
+          a[sortType].toLowerCase() < b[sortType].toLowerCase() ? 1 : -1
+      );
     },
   },
   computed: {
