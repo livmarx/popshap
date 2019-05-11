@@ -15,6 +15,16 @@
         solo
       ></v-text-field>
     </v-flex>
+      <!-- sort by: -->
+     <v-layout row class="mb-3">
+        <v-btn flat color="grey" @click="sortAZ('name')">
+          <span>Name: A-Z</span>
+        </v-btn>
+         <v-btn flat color="grey" @click="sortZA('name')">
+          <span>Name: Z-A</span>
+        </v-btn>
+      </v-layout>
+     <!-- Card Layout Starts -->
     <v-layout>
       <v-flex >
           <v-container fluid grid-list-md>
@@ -82,6 +92,20 @@ export default {
             }
           });
         });
+    },
+    sortAZ(sortType) {
+      console.log(sortType);
+      this.clients.sort(
+        (a, b) =>
+          a[sortType].toLowerCase() < b[sortType].toLowerCase() ? -1 : 1
+      );
+    },
+    sortZA(sortType) {
+      console.log(sortType);
+      this.clients.sort(
+        (a, b) =>
+          a[sortType].toLowerCase() < b[sortType].toLowerCase() ? 1 : -1
+      );
     },
   },
   computed: {
