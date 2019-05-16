@@ -2,7 +2,7 @@
   <v-app class="grey lighten-2">
     <Menus />
     <v-content>
-       <router-view></router-view>
+       <view></view>
     </v-content>
   </v-app>
 </template>

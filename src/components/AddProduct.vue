@@ -2,7 +2,7 @@
   <div class="add-product">
     <div class="banner">
       <h1 class="grey--text text--lighten-2 display-2 font-weight-thin">
-          New User Form
+          New Product Form
         </h1>
     </div>
     <v-form class="px-5">

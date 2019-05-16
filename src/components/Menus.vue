@@ -10,10 +10,17 @@
 
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn flat color="grey">
-        <span>log out</span>
-        <v-icon right>exit_to_app</v-icon>
-      </v-btn>
+      <div class="auth-buttons">
+        <v-btn flat color="grey">
+          <span>log out</span>
+        </v-btn>
+        <v-btn flat color="grey">
+          <span>log in</span>
+        </v-btn>
+        <v-btn flat color="grey">
+          <span>Sign up</span>
+        </v-btn>
+      </div>
     </v-toolbar>
     <!-- DRAWER -->
     <v-navigation-drawer v-model="drawer" app class="grey darken-2">
